@@ -11,12 +11,10 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ children }) => {
   const [isEcommerceOpen, setIsEcommerceOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(true);
-  const [isCustomerOpen, setIsCustomerOpen] = useState(true);
 
 
   const toggleEcommerce = () => setIsEcommerceOpen(!isEcommerceOpen);
   const toggleAdmin = () => setIsAdminOpen(!isAdminOpen);
-  const toggleCustomer = () => setIsCustomerOpen(!isCustomerOpen);
   const [role, setRole] = useState(null);
   const navigate = useNavigate();
 

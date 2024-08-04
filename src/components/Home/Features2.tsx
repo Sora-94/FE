@@ -1,7 +1,5 @@
 import React from 'react';
-import img1 from '../../assets/img/featur-1.jpg';
-import img2 from '../../assets/img/featur-2.jpg';
-import img3 from '../../assets/img/featur-3.jpg';
+
 const services = [
   {
     href: '#',
