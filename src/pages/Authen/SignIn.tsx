@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../assets/Phoenix/css/simplebar.min.css';
 import '../../assets/Phoenix/css/theme-rtl.min.css';
 import '../../assets/Phoenix/css/theme.min.css';
@@ -7,37 +7,55 @@ import '../../assets/Phoenix/css/user.min.css';
 import '../../assets/Phoenix/css/leaflet.css';
 import '../../assets/Phoenix/css/MarkerCluster.css';
 import '../../assets/Phoenix/css/MarkerCluster.Default.css';
-
-// JavaScript Imports
-import '../../assets/Phoenix/js/popper.min.js';
-import '../../assets/Phoenix/js/bootstrap.min.js';
-import '../../assets/Phoenix/js/all.min.js';
-import '../../assets/Phoenix/js/lodash.min.js';
-import '../../assets/Phoenix/js/list.min.js';
-import '../../assets/Phoenix/js/feather.min.js';
-import '../../assets/Phoenix/js/dayjs.min.js';
-import '../../assets/Phoenix/js/echarts.min.js';
-import '../../assets/Phoenix/js/leaflet.js';
-import '../../assets/Phoenix/js/leaflet.markercluster.js';
-import '../../assets/Phoenix/js/leaflet-tilelayer-colorfilter.min.js';
 import bgimg from '../../assets/Phoenix/images/37.png';
 import bgimg2 from '../../assets/Phoenix/images/38.png';
 import auth from '../../assets/Phoenix/images/auth.png';
 import auth2 from '../../assets/Phoenix/images/auth-dark.png';
 import logo from '../../assets/Phoenix/images/logo.png';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../services/auth';
+import { LoginRequest, LoginResponse } from '../../models/auth';
 
 const AuthCard: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+  
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+  
+      const requestData: LoginRequest = { email, password };
+  
+      try {
+        const response: LoginResponse = await loginUser('/api/v1/authentication/login', requestData);
+  
+        if (response.isSuccess) {
+          const token = response.data.Token[0];
+          localStorage.setItem('token', token); // Lưu token vào localStorage
+          window.alert("Đăng nhập thành công!");
+          navigate('/');
+          console.log('Login successful:', response);
+        } else {
+          setError(response.message || 'Login failed');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        setError('Login failed');
+      }
+    };
+
   return (
     <main className="main profile-page" id="top">
       <div className="container-fluid bg-body-tertiary dark__bg-gray-1200">
-        <div className="bg-holder bg-auth-card-overlay" style={{ backgroundImage: bgimg }}></div>
+        <div className="bg-holder bg-auth-card-overlay" style={{ backgroundImage: `url(${bgimg})` }}></div>
         <div className="row flex-center position-relative min-vh-100 g-0 py-5">
           <div className="col-11 col-sm-10 col-xl-8">
             <div className="card border border-translucent auth-card">
               <div className="card-body pe-md-0">
                 <div className="row align-items-center gx-0 gy-7">
                   <div className="col-auto bg-body-highlight dark__bg-gray-1100 rounded-3 position-relative overflow-hidden auth-title-box">
-                    <div className="bg-holder" style={{ backgroundImage: bgimg2 }}></div>
+                    <div className="bg-holder" style={{ backgroundImage: `url(${bgimg2})` }}></div>
                     <div className="position-relative px-4 px-lg-7 pt-7 pb-7 pb-sm-5 text-center text-md-start pb-lg-7 pb-md-7">
                       <h3 className="mb-3 text-body-emphasis fs-7">Phoenix Authentication</h3>
                       <p className="text-body-tertiary">Give yourself some hassle-free development process with the uniqueness of Phoenix!</p>
@@ -63,61 +81,75 @@ const AuthCard: React.FC = () => {
                         <h3 className="text-body-highlight">Sign In</h3>
                         <p className="text-body-tertiary">Get access to your account</p>
                       </div>
-                      <button className="btn btn-phoenix-secondary w-100 mb-3">
-                        <svg className="svg-inline--fa fa-google text-danger me-2 fs-9" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
-                          <path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
-                        </svg>
-                        Sign in with google
-                      </button>
-                      <button className="btn btn-phoenix-secondary w-100">
-                        <svg className="svg-inline--fa fa-facebook text-primary me-2 fs-9" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                          <path fill="currentColor" d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"></path>
-                        </svg>
-                        Sign in with facebook
-                      </button>
-                      <div className="position-relative">
-                        <hr className="bg-body-secondary mt-5 mb-4" />
-                        <div className="divider-content-center bg-body-emphasis">or use email</div>
-                      </div>
-                      <div className="mb-3 text-start">
-                        <label className="form-label" htmlFor="email">Email address</label>
-                        <div className="form-icon-container">
-                          <input className="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" />
-                          <svg className="svg-inline--fa fa-user text-body fs-9 form-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path fill="currentColor" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="mb-3 text-start">
-                        <label className="form-label" htmlFor="password">Password</label>
-                        <div className="form-icon-container" data-password="data-password">
-                          <input className="form-control form-icon-input pe-6" id="password" type="password" placeholder="Password" data-password-input="data-password-input" />
-                          <svg className="svg-inline--fa fa-key text-body fs-9 form-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="key" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="currentColor" d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"></path>
-                          </svg>
-                          <button className="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary" data-password-toggle="data-password-toggle">
-
-                          </button>
-                        </div>
-                      </div>
-                      <div className="row flex-between-center mb-7">
-                        <div className="col-auto">
-                          <div className="form-check mb-0">
-                            <input className="form-check-input" id="basic-checkbox" type="checkbox" checked />
-                            <label className="form-check-label mb-0" htmlFor="basic-checkbox">Remember me</label>
+                      {error && <div className="alert alert-danger">{error}</div>}
+                      <form onSubmit={handleSubmit}>
+                        <div className="mb-3 text-start">
+                          <label className="form-label" htmlFor="email">Email address</label>
+                          <div className="form-icon-container">
+                            <input
+                              className="form-control form-icon-input"
+                              id="email"
+                              type="email"
+                              placeholder="name@example.com"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <svg className="svg-inline--fa fa-user text-body fs-9 form-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                              <path fill="currentColor" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"></path>
+                            </svg>
                           </div>
                         </div>
-                        <div className="col-auto">
-                          <a className="fs-9 fw-semibold" href="/forgotpassword">Forgot Password?</a>
+                        <div className="mb-3 text-start">
+                          <label className="form-label" htmlFor="password">Password</label>
+                          <div className="form-icon-container" data-password="data-password">
+                            <input
+                              className="form-control form-icon-input pe-6"
+                              id="password"
+                              type="password"
+                              placeholder="Password"
+                              data-password-input="data-password-input"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <svg className="svg-inline--fa fa-key text-body fs-9 form-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="key" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="currentColor" d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 16.4 13.3 29.7 29.7 29.7H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="row flex-between-center mb-7">
+                          <div className="col-auto">
+                            <div className="form-check mb-0">
+                              <input className="form-check-input" type="checkbox" id="card-checkbox" />
+                              <label className="form-check-label mb-0" htmlFor="card-checkbox">Remember me</label>
+                            </div>
+                          </div>
+                          <div className="col-auto">
+                            <a className="fs--1 fw-semi-bold" href="#!">Forgot Password?</a>
+                          </div>
+                        </div>
+                        <button className="btn btn-primary d-block w-100 mt-6" type="submit">Log In</button>
+                      </form>
+                      <div className="position-relative mt-5">
+                        <hr className="bg-300" />
+                        <div className="divider-content-center">or log in with</div>
+                      </div>
+                      <div className="row g-2 mt-2">
+                        <div className="col-sm-6">
+                          <a className="btn btn-outline-google-plus btn-sm d-block w-100" href="#"><span className="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> google</a>
+                        </div>
+                        <div className="col-sm-6">
+                          <a className="btn btn-outline-facebook btn-sm d-block w-100" href="#"><span className="fab fa-facebook-square me-2" data-fa-transform="grow-8"></span> facebook</a>
                         </div>
                       </div>
-                      <button className="btn btn-primary w-100 mb-3">Sign In</button>
-                      <div className="text-center">
-                        <a className="fs-9 fw-bold" href="/signup">Create an account</a>
+                      <div className="text-center mt-5">
+                        <a className="fs--1 fw-bold" href="/register">No account? Register</a>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="card-footer text-center py-3">
+                <p className="mb-0"><a href="https://themewagon.com/">&copy; 2023 ThemeWagon&ensp;</a> All rights reserved</p>
               </div>
             </div>
           </div>

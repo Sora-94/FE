@@ -4,23 +4,23 @@ const Features: React.FC = () => {
   const features = [
     {
       icon: 'fa-car-side',
-      title: 'Free Shipping',
-      description: 'Free on order over $300',
+      title: 'Giao hàng miễn phí',
+      description: 'Miễn phí cho đơn đặt hàng trên 300.000đ',
     },
     {
       icon: 'fa-user-shield',
-      title: 'Security Payment',
-      description: '100% security payment',
+      title: 'Thanh toán bảo đảm',
+      description: 'Thanh toán bảo mật 100%, nhiêu phương thức',
     },
     {
       icon: 'fa-exchange-alt',
-      title: '30 Day Return',
-      description: '30 day money guarantee',
+      title: 'Trả hàng trong 30 ngày',
+      description: 'Đảm bảo tiền trong 30 ngày',
     },
     {
       icon: 'fa-phone-alt',
-      title: '24/7 Support',
-      description: 'Support every time fast',
+      title: 'Hỗ trợ 24/7',
+      description: 'Hỗ trợ mọi lúc nhanh chóng',
     },
   ];
 
@@ -48,4 +48,3 @@ const Features: React.FC = () => {
 };
 
 export default Features;
-    

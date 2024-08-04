@@ -8,19 +8,18 @@ const AdSection: React.FC = () => {
           <div className="row g-4 align-items-center">
             <div className="col-lg-6">
               <div className="py-4">
-                <h1 className="display-3 text-white">Fresh Exotic Fruits</h1>
+                <h1 className="display-3 text-white">Trái cây tươi</h1>
                 <p className="fw-normal display-3 text-dark mb-4">
-                  in Our Store
+                Trong cửa hàng của chúng tôi
                 </p>
                 <p className="mb-4 text-dark">
-                  The generated Lorem Ipsum is therefore always free from
-                  repetition injected humour, or non-characteristic words etc.
+                Đảm bảo nguồn hàng luôn tươi.
                 </p>
                 <a
                   href="#"
                   className="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5"
                 >
-                  BUY
+                 Mua
                 </a>
               </div>
             </div>
@@ -32,10 +31,6 @@ const AdSection: React.FC = () => {
                   style={{ width: 140, height: 140, top: 0, left: 0 }}
                 >
                   <h1 style={{ fontSize: 100 }}>1</h1>
-                  <div className="d-flex flex-column">
-                    <span className="h2 mb-0">50$</span>
-                    <span className="h4 text-muted mb-0">kg</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -46,10 +41,9 @@ const AdSection: React.FC = () => {
       <div className="container-fluid py-5">
         <div className="container py-5">
           <div className="text-center mx-auto mb-5" style={{ maxWidth: 700 }}>
-            <h1 className="display-4">Bestseller Products</h1>
+            <h1 className="display-4">Sản phẩm bán chạy nhất</h1>
             <p>
-              Latin words, combined with a handful of model sentence structures,
-              to generate Lorem Ipsum which looks reasonable.
+             Các sản phẩm được mua nhiêu nhất
             </p>
           </div>
           <div className="row g-4">

@@ -1,8 +1,9 @@
-import React, { useState, ReactNode } from 'react';
+import React, {useEffect, useState, ReactNode } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { FaCaretRight, FaShoppingCart, FaPhone } from 'react-icons/fa';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 interface NavbarProps {
   children: ReactNode;
 }
@@ -16,7 +17,39 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
   const toggleEcommerce = () => setIsEcommerceOpen(!isEcommerceOpen);
   const toggleAdmin = () => setIsAdminOpen(!isAdminOpen);
   const toggleCustomer = () => setIsCustomerOpen(!isCustomerOpen);
+  const [role, setRole] = useState(null);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('token'); // Lấy token từ local storage
+    if (!token) {
+      alert('Bạn cần đăng nhập để sử dụng tính năng này');
+      navigate('/login'); // Điều hướng đến trang đăng nhập
+      return;
+    }
+
+    axios.get('https://localhost:7104/api/v1/User/profile', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      const userRole = response.data.role;
+      setRole(userRole);
+      if (userRole !== 'admin') {
+        alert('Bạn không đủ quyền hạn để vào trang quản lý');
+        navigate('/uprofile'); // Điều hướng đến trang uprofile
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching user profile:', error);
+      alert('Đã xảy ra lỗi khi lấy thông tin người dùng');
+    });
+  }, [navigate]);
+
+  if (role !== 'admin') {
+    return null; // Không hiển thị gì nếu không phải admin
+  }
 
   return (
     <main className="main profile-page" id="top">
@@ -76,90 +109,6 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                               <a className="nav-link" href="/Customer">
                                 <div className="d-flex align-items-center">
                                   <span className="nav-link-text">Quản lý người dùng</span>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link dropdown-indicator" onClick={toggleCustomer} aria-expanded={isCustomerOpen}>
-                          <div className="d-flex align-items-center">
-                            <div className="dropdown-indicator-icon-wrapper">
-                              <FaCaretRight className="dropdown-indicator-icon" />
-                            </div>
-                            <span className="nav-link-text">Customer</span>
-                          </div>
-                        </a>
-                        <div className={`parent-wrapper ${isCustomerOpen ? 'show' : 'collapse'}`}>
-                          <ul className="nav parent" data-bs-parent="#e-commerce" id="nv-customer">
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/homepage.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Homepage</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/product-details.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Product details</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/products-filter.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Products filter</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/cart.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Cart</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/checkout.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Checkout</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/shipping-info.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Shipping info</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/profile.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Profile</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/favourite-stores.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Favourite stores</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/wishlist.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Wishlist</span>
-                                </div>
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a className="nav-link" href="apps/e-commerce/landing/order-tracking.html">
-                                <div className="d-flex align-items-center">
-                                  <span className="nav-link-text">Order tracking</span>
                                 </div>
                               </a>
                             </li>
@@ -232,7 +181,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
   </ul>
 </div>
 </nav>
-     <div className="content" style={{ marginRight:"0px"}}> {children}</div>
+     <div className="content" style={{ marginRight:"0px", marginTop:"20px"}}> {children}</div>
     </main>
   );
 };
