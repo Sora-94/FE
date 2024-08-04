@@ -9,6 +9,9 @@
       "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
       "preview": "vite preview",
       "predeploy": "npm run build",
+      "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
       "prefix:profile": "postcss --config postcss/postcss.config.profile.js src/assets/Phoenix/css/theme-rtl.min.css -o src/assets/Phoenix/css/theme-rtl.prefixed.min.css"
     },
     "dependencies": {

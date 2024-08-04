@@ -24,7 +24,7 @@ const HomePage = () => {
         <FruitsShopLayout />
         <Features2Layout /> 
         <VegetableLayout/>
-        <AdLayout/>
+        {/* //<AdLayout/> */}
         <ContactLayout />
         <FooterLayout />
       </div>

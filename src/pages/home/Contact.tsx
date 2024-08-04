@@ -40,7 +40,7 @@ function Contact(){
                         <div className="col-lg-7">
                            
                                 <input type="text" className="w-100 form-control border-0 py-3 mb-4" placeholder="Tên bạn"/>
-                                <input type="email" className="w-100 form-control border-0 py-3 mb-4" placeholder="Nhập eamil cuar bạn"/>
+                                <input type="email" className="w-100 form-control border-0 py-3 mb-4" placeholder="Nhập email của bạn"/>
                                 <textarea className="w-100 form-control border-0 mb-4" rows={5} cols={10} placeholder="Tin nhắn của bạn"></textarea>
                                 <button className="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Gửi</button>
                            
