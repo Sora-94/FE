@@ -5,7 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    sourcemap: false
+    sourcemap: false,
+    outDir: 'build'  // Thêm dòng này
   },
   css: {
     preprocessorOptions: {
@@ -17,5 +18,5 @@ export default defineConfig({
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' }
   }
-
 })
+
