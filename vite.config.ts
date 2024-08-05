@@ -8,6 +8,9 @@ export default defineConfig({
     sourcemap: false,
     outDir: 'build'  // Thêm dòng này
   },
+  server: {
+    port: 3000,
+  },
   css: {
     preprocessorOptions: {
       css: {
