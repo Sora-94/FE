@@ -3,8 +3,6 @@
   import { AxiosResponse } from "axios";
   import axios from "axios";
 
-  const API_BASE_URL = "https://be-gu7h.onrender.com";
-
   export const getProducts = async (pageIndex: number): Promise<any> => {
     try {
       const res = await api.get(`https://be-gu7h.onrender.com/api/v1/Product?PageSize=16&pageIndex=${pageIndex}`);
@@ -139,6 +137,6 @@
     }
   };
   export const getProductById = async (id: string) => {
-    const response = await axios.get(`${API_BASE_URL}/Product/${id}`);
+    const response = await axios.get(`https://be-gu7h.onrender.com/api/v1/Product/${id}`);
     return response.data;
   };

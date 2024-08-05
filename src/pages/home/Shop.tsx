@@ -217,7 +217,7 @@ function IndexShop() {
                           />
                         </div>
                         <div>
-                          <h6 className="mb-2">Big Banana</h6>
+                          <h6 className="mb-2">Táo</h6>
                           <div className="d-flex mb-2">
                             <i className="fa fa-star text-secondary"></i>
                             <i className="fa fa-star text-secondary"></i>
@@ -226,9 +226,9 @@ function IndexShop() {
                             <i className="fa fa-star"></i>
                           </div>
                           <div className="d-flex mb-2">
-                            <h5 className="fw-bold me-2">2.99 $</h5>
+                            <h5 className="fw-bold me-2">50.000đ</h5>
                             <h5 className="text-danger text-decoration-line-through">
-                              4.11 $
+                              70.000đ
                             </h5>
                           </div>
                         </div>
@@ -245,7 +245,7 @@ function IndexShop() {
                           />
                         </div>
                         <div>
-                          <h6 className="mb-2">Big Orange</h6>
+                          <h6 className="mb-2">Dâu</h6>
                           <div className="d-flex mb-2">
                             <i className="fa fa-star text-secondary"></i>
                             <i className="fa fa-star text-secondary"></i>
@@ -254,9 +254,9 @@ function IndexShop() {
                             <i className="fa fa-star"></i>
                           </div>
                           <div className="d-flex mb-2">
-                            <h5 className="fw-bold me-2">2.99 $</h5>
+                            <h5 className="fw-bold me-2">120.000đ</h5>
                             <h5 className="text-danger text-decoration-line-through">
-                              4.11 $
+                              150.000đ
                             </h5>
                           </div>
                         </div>
@@ -273,7 +273,7 @@ function IndexShop() {
                           />
                         </div>
                         <div>
-                          <h6 className="mb-2">Big Pineapple</h6>
+                          <h6 className="mb-2">Bông cải xanh</h6>
                           <div className="d-flex mb-2">
                             <i className="fa fa-star text-secondary"></i>
                             <i className="fa fa-star text-secondary"></i>
@@ -282,9 +282,9 @@ function IndexShop() {
                             <i className="fa fa-star"></i>
                           </div>
                           <div className="d-flex mb-2">
-                            <h5 className="fw-bold me-2">2.99 $</h5>
+                            <h5 className="fw-bold me-2">49.000</h5>
                             <h5 className="text-danger text-decoration-line-through">
-                              4.11 $
+                              60.000đ
                             </h5>
                           </div>
                         </div>
