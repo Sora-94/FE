@@ -46,6 +46,7 @@
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
     "@types/bootstrap": "^5.2.10",
     "@types/crypto-js": "^4.2.2",
     "@types/css": "^0.0.37",
