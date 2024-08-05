@@ -17,7 +17,6 @@ import "../../assets/Phoenix/js/all.min.js";
 import "../../assets/Phoenix/js/lodash.min.js";
 import "../../assets/Phoenix/js/list.min.js";
 import "../../assets/Phoenix/js/feather.min.js";
-import "../../assets/Phoenix/js/dayjs.min.js";
 import "../../assets/Phoenix/js/echarts.min.js";
 import "../../assets/Phoenix/js/leaflet.js";
 import "../../assets/Phoenix/js/leaflet.markercluster.js";

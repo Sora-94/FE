@@ -9,9 +9,6 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "prefix:profile": "postcss --config postcss/postcss.config.profile.js src/assets/Phoenix/css/theme-rtl.min.css -o src/assets/Phoenix/css/theme-rtl.prefixed.min.css"
   },
@@ -22,6 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tinymce/tinymce-react": "^5.1.1",
+    "@vitejs/plugin-react": "^4.3.1",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
@@ -64,6 +62,7 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "gh-pages": "^6.1.1",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-commonjs": "^0.10.1"
   }
 }
