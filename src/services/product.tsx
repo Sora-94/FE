@@ -70,6 +70,15 @@
       return [];
     }
   };
+  export const getAllProductsNoDeleteForAd = async (): Promise<ProductDto[]> => {
+    try {
+      const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=8&PageIndex=2');
+      return res.data.items.filter(category => !category.isDeleted);;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
   export const getAllProductsNoDeletea = async (): Promise<ProductDto[]> => {
     try {
       const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=99');

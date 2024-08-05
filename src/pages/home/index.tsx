@@ -6,7 +6,7 @@ import Features2Layout from '../../components/Home/Features2';
 import FruitsShopLayout from '../../components/Home/FruitsShop';
 import FooterLayout from '../../components/Home/Footer';
 import VegetableLayout from '../../components/Home/VegetableCarousel';
-//import AdLayout from '../../components/Home/Adsection';
+import AdLayout from '../../components/Home/Adsection';
 import ContactLayout from '../../components/Home/Contactsection';
 import '@fortawesome/fontawesome-free/css/all.css'; // FontAwesome
 // import 'lightbox2/dist/css/lightbox.min.css'; // Lightbox
@@ -24,7 +24,7 @@ const HomePage = () => {
         <FruitsShopLayout />
         <Features2Layout /> 
         <VegetableLayout/>
-        {/* //<AdLayout/> */}
+        <AdLayout/>
         <ContactLayout />
         <FooterLayout />
       </div>

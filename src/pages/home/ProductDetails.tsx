@@ -23,7 +23,7 @@ const ShopDetail: React.FC = () => {
 
   useEffect(() => {
     // Fetch product data
-    axios.get(`https://localhost:7104/api/v1/Product/${id}`)
+    axios.get(`https://be-gu7h.onrender.com/api/v1/Product/${id}`)
       .then(response => {
         setProduct(response.data);
       })
