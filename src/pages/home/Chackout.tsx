@@ -1,243 +1,329 @@
-import NavbarLayout from '../../components/Home/Navbar';
+import React, { useEffect, useState } from "react";
+import NavbarLayout from "../../components/Home/Navbar";
+import FooterLayout from "../../components/Home/Footer";
+import "@fortawesome/fontawesome-free/css/all.css"; // FontAwesome
+import "owl.carousel/dist/assets/owl.carousel.min.css";
+import "../../assets/lib/owlcarousel/assets/owl.carousel.min.css"; // OwlCarousel
+import "../../assets/css/bootstrap.min.css"; // Bootstrap
+import "../../assets/css/style.css"; // Custom CSS
+import { getUserProfile } from "../../services/user"; // Import hàm getUserProfile
+import { UserDTO } from "../../models/user"; // Import đúng kiểu dữ liệu
+import { useNavigate } from "react-router-dom"; // Để điều hướng
 
-import FooterLayout from '../../components/Home/Footer';
-import '@fortawesome/fontawesome-free/css/all.css'; // FontAwesome
-// import 'lightbox2/dist/css/lightbox.min.css'; // Lightbox
-// import '../../assets/lib/lightbox/css/lightbox.min.css'; // 
-import 'owl.carousel/dist/assets/owl.carousel.min.css';
-import '../../assets/lib/owlcarousel/assets/owl.carousel.min.css'; // OwlCarousel
-import '../../assets/css/bootstrap.min.css'; // Bootstrap
-import '../../assets/css/style.css'; // Custom CSS;
-import Img1 from '../../assets/img/vegetable-item-1.jpg'
-import Img2 from '../../assets/img/vegetable-item-5.jpg'
-import Img3 from '../../assets/img/vegetable-item-1.jpg'
-function Chackout(){
-    return(
-        <>
-        <NavbarLayout/>
-        {/* <!-- Single Page Header start --> */}
-        <div className="container-fluid page-header py-5">
-            <h1 className="text-center text-white display-6">Checkout</h1>
-            <ol className="breadcrumb justify-content-center mb-0">
-                <li className="breadcrumb-item"><a href="#">Home</a></li>
-                <li className="breadcrumb-item"><a href="#">Pages</a></li>
-                <li className="breadcrumb-item active text-white">Checkout</li>
-            </ol>
-        </div>
-        {/* <!-- Single Page Header End --> */}
-
-
-        {/* <!-- Checkout Page Start --> */}
-        <div className="container-fluid py-5">
-            <div className="container py-5">
-                <h1 className="mb-4">Billing details</h1>
-                <form action="#">
-                    <div className="row g-5">
-                        <div className="col-md-12 col-lg-6 col-xl-7">
-                            <div className="row">
-                                <div className="col-md-12 col-lg-6">
-                                    <div className="form-item w-100">
-                                        <label className="form-label my-3">First Name<sup>*</sup></label>
-                                        <input type="text" className="form-control"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-12 col-lg-6">
-                                    <div className="form-item w-100">
-                                        <label className="form-label my-3">Last Name<sup>*</sup></label>
-                                        <input type="text" className="form-control"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-item">
-                                <label className="form-label my-3">Company Name<sup>*</sup></label>
-                                <input type="text" className="form-control"/>
-                            </div>
-                            <div className="form-item">
-                                <label className="form-label my-3">Address <sup>*</sup></label>
-                                <input type="text" className="form-control" placeholder="House Number Street Name"/>
-                            </div>
-                            <div className="form-item">
-                                <label className="form-label my-3">Town/City<sup>*</sup></label>
-                                <input type="text" className="form-control"/>
-                            </div>
-                            <div className="form-item">
-                                <label className="form-label my-3">Country<sup>*</sup></label>
-                                <input type="text" className="form-control"/>
-                            </div>
-                            <div className="form-item">
-                                <label className="form-label my-3">Postcode/Zip<sup>*</sup></label>
-                                <input type="text" className="form-control"/>
-                            </div>
-                            <div className="form-item">
-                                <label className="form-label my-3">Mobile<sup>*</sup></label>
-                                <input type="tel" className="form-control"/>
-                            </div>
-                            <div className="form-item">
-                                <label className="form-label my-3">Email Address<sup>*</sup></label>
-                                <input type="email" className="form-control"/>
-                            </div>
-                            <div className="form-check my-3">
-                                <input type="checkbox" className="form-check-input" id="Account-1" name="Accounts" value="Accounts"/>
-                                <label className="form-check-label" htmlFor="Account-1">Create an account?</label>
-                            </div>
-                            <hr/>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" id="Address-1" name="Address" value="Address"/>
-                                <label className="form-check-label" htmlFor="Address-1">Ship to a different address?</label>
-                            </div>
-                            <div className="form-item">
-                            <textarea
-  name="text"
-  className="form-control"
-  spellCheck="false"
-  cols={30}
-  rows={11}
-  placeholder="Order Notes (Optional)"
-></textarea>
-                            </div>
-                        </div>
-                        <div className="col-md-12 col-lg-6 col-xl-5">
-                            <div className="table-responsive">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Products</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <div className="d-flex align-items-center mt-2">
-                                                    <img src={Img1} className="img-fluid rounded-circle" style={{width: '90px; height: 90px'}} />
-                                                </div>
-                                            </th>
-                                            <td className="py-5">Awesome Brocoli</td>
-                                            <td className="py-5">$69.00</td>
-                                            <td className="py-5">2</td>
-                                            <td className="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div className="d-flex align-items-center mt-2">
-                                                    <img src={Img2} className="img-fluid rounded-circle" style={{width: '90px; height: 90px'}} alt=""/>
-                                                </div>
-                                            </th>
-                                            <td className="py-5">Potatoes</td>
-                                            <td className="py-5">$69.00</td>
-                                            <td className="py-5">2</td>
-                                            <td className="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div className="d-flex align-items-center mt-2">
-                                                    <img src={Img3} className="img-fluid rounded-circle" style={{width: '90px; height: 90px'}} alt=""/>
-                                                </div>
-                                            </th>
-                                            <td className="py-5">Big Banana</td>
-                                            <td className="py-5">$69.00</td>
-                                            <td className="py-5">2</td>
-                                            <td className="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td className="py-5"></td>
-                                            <td className="py-5"></td>
-                                            <td className="py-5">
-                                                <p className="mb-0 text-dark py-3">Subtotal</p>
-                                            </td>
-                                            <td className="py-5">
-                                                <div className="py-3 border-bottom border-top">
-                                                    <p className="mb-0 text-dark">$414.00</p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td className="py-5">
-                                                <p className="mb-0 text-dark py-4">Shipping</p>
-                                            </td>
-                                            <td colSpan={3} className="py-5">
-                                                <div className="form-check text-start">
-                                                    <input type="checkbox" className="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping"/>
-                                                    <label className="form-check-label" htmlFor="Shipping-1">Free Shipping</label>
-                                                </div>
-                                                <div className="form-check text-start">
-                                                    <input type="checkbox" className="form-check-input bg-primary border-0" id="Shipping-2" name="Shipping-1" value="Shipping"/>
-                                                    <label className="form-check-label" htmlFor="Shipping-2">Flat rate: $15.00</label>
-                                                </div>
-                                                <div className="form-check text-start">
-                                                    <input type="checkbox" className="form-check-input bg-primary border-0" id="Shipping-3" name="Shipping-1" value="Shipping"/>
-                                                    <label className="form-check-label" htmlFor="Shipping-3">Local Pickup: $8.00</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td className="py-5">
-                                                <p className="mb-0 text-dark text-uppercase py-3">TOTAL</p>
-                                            </td>
-                                            <td className="py-5"></td>
-                                            <td className="py-5"></td>
-                                            <td className="py-5">
-                                                <div className="py-3 border-bottom border-top">
-                                                    <p className="mb-0 text-dark">$135.00</p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                                <div className="col-12">
-                                    <div className="form-check text-start my-3">
-                                        <input type="checkbox" className="form-check-input bg-primary border-0" id="Transfer-1" name="Transfer" value="Transfer"/>
-                                        <label className="form-check-label" htmlFor="Transfer-1">Direct Bank Transfer</label>
-                                    </div>
-                                    <p className="text-start text-dark">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
-                                </div>
-                            </div>
-                            <div className="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                                <div className="col-12">
-                                    <div className="form-check text-start my-3">
-                                        <input type="checkbox" className="form-check-input bg-primary border-0" id="Payments-1" name="Payments" value="Payments"/>
-                                        <label className="form-check-label" htmlFor="Payments-1">Check Payments</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                                <div className="col-12">
-                                    <div className="form-check text-start my-3">
-                                        <input type="checkbox" className="form-check-input bg-primary border-0" id="Delivery-1" name="Delivery" value="Delivery"/>
-                                        <label className="form-check-label" htmlFor="Delivery-1">Cash On Delivery</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                                <div className="col-12">
-                                    <div className="form-check text-start my-3">
-                                        <input type="checkbox" className="form-check-input bg-primary border-0" id="Paypal-1" name="Paypal" value="Paypal"/>
-                                        <label className="form-check-label" htmlFor="Paypal-1">Paypal</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row g-4 text-center align-items-center justify-content-center pt-4">
-                                <button type="button" className="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        {/* <!-- Checkout Page End --> */}
-        <FooterLayout/>
-        </>
-    )
+// Interface cho sản phẩm trong giỏ hàng
+interface CartItem {
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+  quantity: number;
+  total: number;
 }
-export default Chackout;
+
+const formatCurrency = (price: number) => {
+  return (price * 1000).toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+};
+// Component chính cho trang giỏ hàng
+const CartPage: React.FC = () => {
+  const navigate = useNavigate(); // Khai báo useNavigate
+  const [cartItems] = useState<CartItem[]>(() => {
+    const storedCartItems = localStorage.getItem("cart");
+    return storedCartItems
+      ? JSON.parse(storedCartItems).map((item: CartItem) => ({
+          ...item,
+          total: item.price * item.quantity,
+        }))
+      : [];
+  });
+
+  // State cho thông tin người dùng
+  const [userProfile, setUserProfile] = useState<UserDTO>({
+    id: "",
+    firstName: "",
+    lastName: "",
+    address: "",
+
+    email: "",
+    role: "",
+    imagePath: "",
+    phoneNumber: ""
+  });
+
+  // State cho lỗi
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  // Lấy thông tin người dùng từ API và điền vào form
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Nếu không có token, chuyển hướng đến trang đăng nhập
+      navigate("/login");
+    } else {
+      getUserProfile(token)
+        .then((data) => {
+          setUserProfile(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+        });
+    }
+  }, [navigate]);
+
+
+  // Tính toán subtotal và total
+  const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
+  const shipping = 30;
+  const total = subtotal + shipping;
+
+  // Kiểm tra lỗi cho các trường trong form
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!userProfile.firstName) newErrors.firstName = "First Name is required.";
+    if (!userProfile.lastName) newErrors.lastName = "Last Name is required.";
+    if (!userProfile.address) newErrors.address = "Address is required.";
+    if (!userProfile.phoneNumber) newErrors.phoneNumber = "phoneNumber is required.";
+    if (!userProfile.email) newErrors.email = "Email is required.";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Xử lý khi gửi form
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (validateForm()) {
+      await submitOrder();
+    }
+  };
+
+  // Hàm gửi yêu cầu đặt hàng
+  const submitOrder = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+
+    const orderItems = cartItems.map(item => ({
+      quantity: item.quantity,
+      unitPrice: item.price,
+      productId: item.id // Điều chỉnh nếu `productId` không phải là `id`
+    }));
+
+    const orderData = {
+      orderDate: new Date().toISOString(),
+      status: 0, // Bạn có thể thay đổi giá trị status nếu cần
+      orderItems
+    };
+
+    try {
+      const response = await fetch("https://localhost:7104/api/v1/Order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(orderData),
+        
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      // Xử lý kết quả thành công
+      alert("Đặt hàng thành công");
+      localStorage.removeItem("cart");
+      navigate("/"); // Chuyển hướng đến trang thành công
+    } catch (error) {
+      console.error("Error placing order:", error);
+    }
+  };
+
+  return (
+    <>
+      <NavbarLayout />
+      {/* <!-- Single Page Header start --> */}
+      <div className="container-fluid page-header py-5">
+        <h1 className="text-center text-white display-6">Checkout</h1>
+        <ol className="breadcrumb justify-content-center mb-0">
+          <li className="breadcrumb-item">
+            <a href="#">Home</a>
+          </li>
+          <li className="breadcrumb-item">
+            <a href="#">Pages</a>
+          </li>
+          <li className="breadcrumb-item active text-white">Checkout</li>
+        </ol>
+      </div>
+      {/* <!-- Single Page Header End --> */}
+
+      {/* <!-- Checkout Page Start --> */}
+      <div className="container-fluid py-5">
+        <div className="container py-5">
+          <h1 className="mb-4">Billing details</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="row g-5">
+              <div className="col-md-12 col-lg-6 col-xl-6">
+                <div className="row">
+                  <div className="col-md-12 col-lg-6">
+                    <div className="form-item w-100">
+                      <label className="form-label my-3">
+                        First Name<sup>*</sup>
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={userProfile.firstName ?? ""} // Sử dụng chuỗi rỗng thay vì null
+                        onChange={(e) => setUserProfile({ ...userProfile, firstName: e.target.value })}
+                      />
+                      {errors.firstName && <div className="text-danger">{errors.firstName}</div>}
+                    </div>
+                  </div>
+                  <div className="col-md-12 col-lg-6">
+                    <div className="form-item w-100">
+                      <label className="form-label my-3">
+                        Last Name<sup>*</sup>
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={userProfile.lastName ?? ""} // Sử dụng chuỗi rỗng thay vì null
+                        onChange={(e) => setUserProfile({ ...userProfile, lastName: e.target.value })}
+                      />
+                      {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
+                    </div>
+                  </div>
+                </div>
+                <div className="form-item">
+                  <label className="form-label my-3">
+                    Address <sup>*</sup>
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="House Number Street Name"
+                    value={userProfile.address ?? ""} // Sử dụng chuỗi rỗng thay vì null
+                    onChange={(e) => setUserProfile({ ...userProfile, address: e.target.value })}
+                  />
+                  {errors.address && <div className="text-danger">{errors.address}</div>}
+                </div>
+                <div className="form-item">
+                  <label className="form-label my-3">
+                  Phone Number<sup>*</sup>
+                  </label>
+                  <input
+                    type="tel"
+                    className="form-control"
+                    value={userProfile.phoneNumber ?? ""} // Sử dụng chuỗi rỗng thay vì null
+                    onChange={(e) => setUserProfile({ ...userProfile, phoneNumber: e.target.value })}
+                  />
+                  {errors.phoneNumber && <div className="text-danger">{errors.phoneNumber}</div>}
+                </div>
+                <div className="form-item">
+                  <label className="form-label my-3">
+                    Email Address<sup>*</sup>
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    value={userProfile.email ?? ""} // Sử dụng chuỗi rỗng thay vì null
+                    onChange={(e) => setUserProfile({ ...userProfile, email: e.target.value })}
+                  />
+                  {errors.email && <div className="text-danger">{errors.email}</div>}
+                </div>
+                <hr />
+                <div className="form-item">
+                  <label className="form-label my-3">
+                    Order Notes (Optional)
+                  </label>
+                  <textarea className="form-control" rows={5} placeholder="Notes about your order..."></textarea>
+                </div>
+                <div className="form-item w-100">
+                  <button className="btn btn-primary py-3 px-4" type="submit">
+                    Place Order
+                  </button>
+                </div>
+              </div>
+            
+              <div className="col-md-12 col-lg-6 col-xl-6">
+              <div className="table-responsive">
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Products</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {cartItems.map((item) => (
+                            <tr key={item.id}>
+                              <th scope="row">
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  style={{ width: "80px", height: "80px", objectFit: "cover" }}
+                                />
+                                {item.name}
+                              </th>
+                              <td>{item.quantity}</td>
+                              <td>{formatCurrency(item.price)}</td>
+                              <td>{formatCurrency(item.total)}</td>
+                            </tr>
+                          ))}
+                          <tr>
+                            <th scope="row"></th>
+                            <td className="py-5"></td>
+                            <td className="py-5"></td>
+                            <td className="py-5">Subtotal:</td>
+                            <td className="py-5">{formatCurrency(subtotal)}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row"></th>
+                            <td className="py-5"></td>
+                            <td className="py-5"></td>
+                            <td className="py-5">Shipping:</td>
+                            <td className="py-5">{formatCurrency(shipping)}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row"></th>
+                            <td className="py-5"></td>
+                            <td className="py-5"></td>
+                            <td className="py-5">Total:</td>
+                            <td className="py-5">{formatCurrency(total)}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                <div className="bg-light rounded p-4">
+                  <h4 className="mb-4">Order Summary</h4>
+                  <div className="d-flex justify-content-between">
+                    <h6 className="mb-3">Subtotal</h6>
+                    <p className="mb-3">{formatCurrency(subtotal)}</p>
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <h6 className="mb-3">Shipping</h6>
+                    <p className="mb-3">{formatCurrency(shipping)}</p>
+                  </div>
+                  <hr />
+                  <div className="d-flex justify-content-between">
+                    <h6 className="mb-3">Total</h6>
+                    <p className="mb-3">{formatCurrency(total)}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      {/* <!-- Checkout Page End --> */}
+
+      <FooterLayout />
+    </>
+  );
+};
+
+export default CartPage;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate  } from 'react-router-dom';
 import NavbarLayout from "../../components/Home/Navbar";
 import FooterLayout from "../../components/Home/Footer";
 
@@ -23,6 +24,9 @@ interface CartItem {
   quantity: number;
   total: number;
 }
+const formatCurrency = (price: number) => {
+  return (price * 1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+};
 
 // Component cho từng hàng trong bảng giỏ hàng
 const CartTableRow: React.FC<{ item: CartItem; onUpdateQuantity: (id: number, quantity: number) => void; onRemove: (id: number) => void }> = ({ item, onUpdateQuantity, onRemove }) => (
@@ -36,7 +40,7 @@ const CartTableRow: React.FC<{ item: CartItem; onUpdateQuantity: (id: number, qu
       <p className="mb-0 mt-4">{item.name}</p>
     </td>
     <td>
-      <p className="mb-0 mt-4">{item.price} $</p>
+      <p className="mb-0 mt-4">{formatCurrency(item.price)}</p>
     </td>
     <td>
       <div className="input-group quantity mt-4" style={{ width: '100px' }}>
@@ -54,7 +58,7 @@ const CartTableRow: React.FC<{ item: CartItem; onUpdateQuantity: (id: number, qu
       </div>
     </td>
     <td>
-      <p className="mb-0 mt-4">{item.total} $</p>
+      <p className="mb-0 mt-4">{formatCurrency(item.total)}</p>
     </td>
     <td>
       <button className="btn btn-md rounded-circle bg-light border mt-4" onClick={() => onRemove(item.id)}>
@@ -66,6 +70,16 @@ const CartTableRow: React.FC<{ item: CartItem; onUpdateQuantity: (id: number, qu
 
 // Component chính cho trang giỏ hàng
 const CartPage: React.FC = () => {
+  const history = useNavigate ();
+
+  // Kiểm tra token khi trang được tải
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      history('/signin'); // Chuyển hướng đến trang đăng nhập nếu không có token
+    }
+  }, [history]);
+
   // State cho các sản phẩm trong giỏ hàng
   const [cartItems, setCartItems] = React.useState<CartItem[]>(() => {
     const storedCartItems = localStorage.getItem('cart');
@@ -101,7 +115,7 @@ const CartPage: React.FC = () => {
 
   // Tính toán subtotal và total
   const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
-  const shipping = 3;
+  const shipping = 30;
   const total = subtotal + shipping;
 
   return (
@@ -142,23 +156,22 @@ const CartPage: React.FC = () => {
                   <h1 className="display-6 mb-4">Cart <span className="fw-normal">Total</span></h1>
                   <div className="d-flex justify-content-between mb-4">
                     <h5 className="mb-0 me-4">Subtotal:</h5>
-                    <p className="mb-0">${subtotal.toFixed(2)}</p>
+                    <p className="mb-0">{formatCurrency(subtotal)}</p>
                   </div>
                   <div className="d-flex justify-content-between">
                     <h5 className="mb-0 me-4">Shipping</h5>
                     <div>
-                      <p className="mb-0">Flat rate: ${shipping.toFixed(2)}</p>
+                      <p className="mb-0">{formatCurrency(shipping)}</p>
                     </div>
                   </div>
-                  <p className="mb-0 text-end">Shipping to Ukraine.</p>
                 </div>
                 <div className="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                   <h5 className="mb-0 ps-4 me-4">Total</h5>
-                  <p className="mb-0 pe-4">${total.toFixed(2)}</p>
+                  <p className="mb-0 pe-4">{formatCurrency(total)}</p>
                 </div>
-                <button className="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">
+                <a href='checkout' className="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">
                   Proceed Checkout
-                </button>
+                </a>
               </div>
             </div>
           </div>

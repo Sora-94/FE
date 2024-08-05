@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from '../../components/Home/ProductCard';
-//import axios from "axios";
 import NavbarLayout from "../../components/Home/Navbar";
 import FooterLayout from "../../components/Home/Footer";
 import "@fortawesome/fontawesome-free/css/all.css"; // FontAwesome
@@ -11,10 +10,8 @@ import "../../assets/css/style.css"; // Custom CSS
 import img1 from "../../assets/img/featur-1.jpg";
 import img2 from "../../assets/img/featur-2.jpg";
 import img3 from "../../assets/img/featur-3.jpg";
-// import img4 from "../../assets/img/banner-fruits.jpg";
-//  import img5 from "../../assets/img/fruite-item-1.jpg";
 import { getAllCategories } from "../../services/category";
-import { getProducts,getProductForList } from "../../services/product";
+import { getProducts, getProductForSearch } from "../../services/product";
 import { CategoryDto } from "../../models/category";
 
 function IndexShop() {
@@ -23,16 +20,8 @@ function IndexShop() {
   const [products, setProducts] = useState<any[]>([]);
   const [pageIndex, setPageIndex] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [activeCategory] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-        const data = await getProductForList();
-        setProducts(data);
-    };
-
-    fetchProducts();
-}, [activeCategory]);
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await getAllCategories();
@@ -44,8 +33,12 @@ function IndexShop() {
   }, []);
 
   useEffect(() => {
-    fetchProducts(pageIndex);
-  }, [pageIndex]);
+    if (searchTerm) {
+      fetchProductsBySearch();
+    } else {
+      fetchProducts(pageIndex);
+    }
+  }, [searchTerm, pageIndex]);
 
   const fetchProducts = async (pageIndex: number) => {
     const data = await getProducts(pageIndex);
@@ -53,8 +46,22 @@ function IndexShop() {
     setTotalPages(data.totalPages);
   };
 
+  const fetchProductsBySearch = async () => {
+    const data = await getProductForSearch(searchTerm);
+    setProducts(data);
+    setTotalPages(1); // Khi tìm kiếm, chỉ hiển thị 1 trang kết quả
+  };
+
   const handlePageChange = (newPageIndex: number) => {
     setPageIndex(newPageIndex);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    fetchProductsBySearch();
   };
 
   if (loading) return <p>Loading...</p>;
@@ -87,8 +94,10 @@ function IndexShop() {
                       className="form-control p-3"
                       placeholder="keywords"
                       aria-describedby="search-icon-1"
+                      value={searchTerm}
+                      onChange={handleSearchChange}
                     />
-                    <span id="search-icon-1" className="input-group-text p-3">
+                    <span id="search-icon-1" className="input-group-text p-3" onClick={handleSearchClick}>
                       <i className="fa fa-search"></i>
                     </span>
                   </div>
@@ -236,7 +245,7 @@ function IndexShop() {
                           />
                         </div>
                         <div>
-                          <h6 className="mb-2">Big Banana</h6>
+                          <h6 className="mb-2">Big Orange</h6>
                           <div className="d-flex mb-2">
                             <i className="fa fa-star text-secondary"></i>
                             <i className="fa fa-star text-secondary"></i>
@@ -264,7 +273,7 @@ function IndexShop() {
                           />
                         </div>
                         <div>
-                          <h6 className="mb-2">Big Banana</h6>
+                          <h6 className="mb-2">Big Pineapple</h6>
                           <div className="d-flex mb-2">
                             <i className="fa fa-star text-secondary"></i>
                             <i className="fa fa-star text-secondary"></i>
@@ -280,49 +289,35 @@ function IndexShop() {
                           </div>
                         </div>
                       </div>
-                      
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-9">
                   <div className="row g-4">
-                  {products.map((product, index) => (
-                                    <ProductCard key={index} product={product} />
-                                ))}
+                    {products.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                      />
+                    ))}
                   </div>
-                  <nav aria-label="Page navigation" className="mt-4">
-                    <ul className="pagination justify-content-center">
-                      <li className={`page-item ${pageIndex === 1 ? "disabled" : ""}`}>
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageChange(pageIndex - 1)}
-                        >
-                          Previous
-                        </button>
-                      </li>
-                      {Array.from({ length: totalPages }, (_, index) => (
-                        <li
-                          key={index}
-                          className={`page-item ${pageIndex === index + 1 ? "active" : ""}`}
-                        >
-                          <button
-                            className="page-link"
-                            onClick={() => handlePageChange(index + 1)}
+                  <nav aria-label="Page navigation example">
+                    <ul className="pagination justify-content-center mt-5">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                        (pageNum) => (
+                          <li
+                            className={`page-item ${
+                              pageIndex === pageNum ? "active" : ""
+                            }`}
+                            key={pageNum}
+                            onClick={() => handlePageChange(pageNum)}
                           >
-                            {index + 1}
-                          </button>
-                        </li>
-                      ))}
-                      <li
-                        className={`page-item ${pageIndex === totalPages ? "disabled" : ""}`}
-                      >
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageChange(pageIndex + 1)}
-                        >
-                          Next
-                        </button>
-                      </li>
+                            <a className="page-link" href="#">
+                              {pageNum}
+                            </a>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </nav>
                 </div>

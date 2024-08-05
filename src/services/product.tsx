@@ -7,7 +7,7 @@
 
   export const getProducts = async (pageIndex: number): Promise<any> => {
     try {
-      const res = await api.get(`https://localhost:7104/api/v1/Product?PageSize=8&pageIndex=${pageIndex}`);
+      const res = await api.get(`https://localhost:7104/api/v1/Product?PageSize=16&pageIndex=${pageIndex}`);
       return res.data;
     } catch (error) {
       console.log(error);
@@ -34,13 +34,33 @@
   };
   export const getProductForList = async (): Promise<ProductDto[]> => {
     try {
-      const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=8');
+      const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=16');
       return res.data.items.filter(product => !product.isDeleted);;
     } catch (error) {
       console.log(error);
       return [];
     }
   };
+  export const getProductForSearch = async (seachdata: string): Promise<ProductDto[]> => {
+    try {
+      const res = await api.get<ProductResponse>(`/api/v1/Product?PageSize=16&SearchTerm=${seachdata}`);
+      return res.data.items.filter(product => !product.isDeleted);;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+  
+  export const getProductsByCategory = async (category: string): Promise<ProductDto[]> => {
+    try {
+      const res = await api.get<ProductResponse>(`/api/v1/Product?SearchTerm=${category}`);
+      return res.data.items;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+
   export const getAllProductsNoDelete = async (): Promise<ProductDto[]> => {
     try {
       const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=8');
@@ -69,16 +89,6 @@
     }
   };
 
-
-  export const getProductsByCategory = async (category: string): Promise<ProductDto[]> => {
-    try {
-      const res = await api.get<ProductResponse>(`/api/v1/Product?SearchTerm=${category}`);
-      return res.data.items;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  };
 
   export const getProductsByCategorya = async (category: string): Promise<ProductDto[]> => {
     try {

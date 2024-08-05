@@ -47,7 +47,9 @@ const ShopDetail: React.FC = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
     alert('Product added to cart!');
   };
-
+  const formatCurrency = (price: number) => {
+    return (price * 1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+  };
   const handleQuantityChange = (type: 'increment' | 'decrement') => {
     setQuantity(prevQuantity => {
       if (type === 'increment') {
@@ -89,7 +91,7 @@ const ShopDetail: React.FC = () => {
                 <div className="col-lg-6">
                   <h4 className="fw-bold mb-3">{product.name}</h4>
                   <p className="mb-3">Category: {product.categoryName}</p>
-                  <h5 className="fw-bold mb-3">{product.price} $</h5>
+                  <h5 className="fw-bold mb-3">{formatCurrency(product.price)}</h5>
                   <div className="d-flex mb-4">
                     {[...Array(5)].map((_, i) => (
                       <FontAwesomeIcon
@@ -218,9 +220,6 @@ const ShopDetail: React.FC = () => {
                     </div>
                     <div className="col-sm-6 col-lg-4">
                       <input type="email" className="form-control bg-light border-0" placeholder="Your Email" />
-                    </div>
-                    <div className="col-sm-6 col-lg-4">
-                      <input type="text" className="form-control bg-light border-0" placeholder="Website" />
                     </div>
                     <div className="col-12">
                       <textarea className="form-control bg-light border-0" rows={5} placeholder="Message"></textarea>

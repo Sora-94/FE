@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
     const token = localStorage.getItem('token'); // Lấy token từ local storage
     if (!token) {
       alert('Bạn cần đăng nhập để sử dụng tính năng này');
-      navigate('/login'); // Điều hướng đến trang đăng nhập
+      navigate('/signin'); // Điều hướng đến trang đăng nhập
       return;
     }
 

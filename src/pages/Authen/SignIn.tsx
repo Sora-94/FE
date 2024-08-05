@@ -142,7 +142,7 @@ const AuthCard: React.FC = () => {
                         </div>
                       </div>
                       <div className="text-center mt-5">
-                        <a className="fs--1 fw-bold" href="/register">No account? Register</a>
+                        <a className="fs--1 fw-bold" href="/signup">No account? Register</a>
                       </div>
                     </div>
                   </div>

@@ -53,6 +53,22 @@ const SignUpCard: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors: ValidationErrors = {};
+
+    // Kiểm tra các trường không được để trống
+    if (!form.email) newErrors.email = ["Email is required"];
+    if (!form.password) newErrors.password = ["Password is required"];
+    if (!form.confirmPassword) newErrors.confirmPassword = ["Confirm Password is required"];
+    if (!form.firstName) newErrors.firstName = ["First Name is required"];
+    if (!form.lastName) newErrors.lastName = ["Last Name is required"];
+    if (!form.PhoneNumber) newErrors.PhoneNumber = ["Phone Number is required"];
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setGeneralError("Please fill out all required fields");
+      return;
+    }
+
     const result = await registerUser("/api/v1/authentication/register", form);
     if (result?.success) {
       navigate('/signin');
@@ -202,42 +218,25 @@ const SignUpCard: React.FC = () => {
                         </div>
                         <div
                           className="mb-3 text-start"
-                          style={{ marginTop: "-10px" }}
-                        >
-                          <label className="form-label" htmlFor="Phone">
-                            Phone
-                          </label>
-                          <input
-        className="form-control"
-        id="PhoneNumber"
-        type="text"
-        placeholder="Phone"
-        value={form.PhoneNumber}
-        onChange={handleChange}
-      />
-      {errors.PhoneNumber &&
-        errors.PhoneNumber.map((error, index) => (
-          <div key={index} className="text-danger">
-            {error}
-          </div>
-        ))}
-                        </div>
-
-                        <div
-                          className="mb-3 text-start"
-                          style={{ marginTop: "-10px" }}
+                          style={{ marginTop: "-20px" }}
                         >
                           <label className="form-label" htmlFor="email">
                             Email address
                           </label>
-                          <input
-                            className="form-control"
-                            id="email"
-                            type="email"
-                            placeholder="name@example.com"
-                            value={form.email}
-                            onChange={handleChange}
-                          />
+                          <div className="position-relative">
+                            <input
+                              className="form-control form-icon-input pe-6"
+                              id="email"
+                              type="email"
+                              placeholder="Email address"
+                              value={form.email}
+                              onChange={handleChange}
+                            />
+                            <button
+                              className="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary"
+                              data-email-toggle="data-email-toggle"
+                            ></button>
+                          </div>
                           {errors.email &&
                             errors.email.map((error, index) => (
                               <div key={index} className="text-danger">
@@ -245,15 +244,42 @@ const SignUpCard: React.FC = () => {
                               </div>
                             ))}
                         </div>
-                        <div className="row g-3 mb-3">
+                        <div
+                          className="mb-3 text-start"
+                          style={{ marginTop: "-20px" }}
+                        >
+                          <label className="form-label" htmlFor="PhoneNumber">
+                            Phone Number
+                          </label>
+                          <div className="position-relative">
+                            <input
+                              className="form-control form-icon-input pe-6"
+                              id="PhoneNumber"
+                              placeholder="Phone Number"
+                              value={form.PhoneNumber}
+                              onChange={handleChange}
+                            />
+                            <button
+                              className="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary"
+                              data-phoneNumber-toggle="data-phoneNumber-toggle"
+                            ></button>
+                          </div>
+                          {errors.PhoneNumber &&
+                            errors.PhoneNumber.map((error, index) => (
+                              <div key={index} className="text-danger">
+                                {error}
+                              </div>
+                            ))}
+                        </div>
+                        <div
+                          className="row g-3 mb-3"
+                          style={{ marginTop: "-20px" }}
+                        >
                           <div className="col-sm-6">
                             <label className="form-label" htmlFor="password">
                               Password
                             </label>
-                            <div
-                              className="position-relative"
-                              data-password="data-password"
-                            >
+                            <div className="position-relative">
                               <input
                                 className="form-control form-icon-input pe-6"
                                 id="password"
@@ -281,10 +307,7 @@ const SignUpCard: React.FC = () => {
                             >
                               Confirm Password
                             </label>
-                            <div
-                              className="position-relative"
-                              data-password="data-password"
-                            >
+                            <div className="position-relative">
                               <input
                                 className="form-control form-icon-input pe-6"
                                 id="confirmPassword"
@@ -295,7 +318,7 @@ const SignUpCard: React.FC = () => {
                               />
                               <button
                                 className="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary"
-                                data-password-toggle="data-password-toggle"
+                                data-confirmPassword-toggle="data-confirmPassword-toggle"
                               ></button>
                             </div>
                             {errors.confirmPassword &&
@@ -309,20 +332,36 @@ const SignUpCard: React.FC = () => {
                         {generalError && (
                           <div className="text-danger mb-3">{generalError}</div>
                         )}
-                        <div className="d-grid">
-                          <button className="btn btn-primary" type="submit">
-                            Sign Up
-                          </button>
+                        <button className="btn btn-primary w-100 mb-3">
+                          Sign Up
+                        </button>
+                        <div className="text-center">
+                          <a className="fs--1 fw-semibold" href="/signin">
+                            Sign In
+                          </a>
                         </div>
                       </form>
                     </div>
                   </div>
                 </div>
-                <div className="text-center mt-3">
-                  <p className="text-body-tertiary">
-                    Already have an account? <a href="/login">Log in</a>
-                  </p>
-                </div>
+              </div>
+              <div className="card-body text-center py-4 px-5 px-sm-6 dark__bg-card-default">
+                <p className="mb-0 text-body-tertiary">
+                  Read our
+                  <a
+                    className="text-primary text-decoration-underline"
+                    href="#!"
+                  >
+                    terms
+                  </a>{" "}
+                  and
+                  <a
+                    className="text-primary text-decoration-underline"
+                    href="#!"
+                  >
+                    conditions
+                  </a>
+                </p>
               </div>
             </div>
           </div>
