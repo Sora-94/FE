@@ -5,9 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    sourcemap: false,
-    outDir: 'build'  // Thêm dòng này
+    outDir: 'build', // Output directory cho build
   },
+  resolve: {
+    alias: {
+      '@': '/src', // Alias cho thư mục src
+    },
+  },    
   server: {
     port: 3000,
   },
