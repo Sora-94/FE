@@ -3,11 +3,11 @@
   import { AxiosResponse } from "axios";
   import axios from "axios";
 
-  const API_BASE_URL = "https://localhost:7104/api/v1";
+  const API_BASE_URL = "https://be-gu7h.onrender.com";
 
   export const getProducts = async (pageIndex: number): Promise<any> => {
     try {
-      const res = await api.get(`https://localhost:7104/api/v1/Product?PageSize=16&pageIndex=${pageIndex}`);
+      const res = await api.get(`https://be-gu7h.onrender.com/api/v1/Product?PageSize=16&pageIndex=${pageIndex}`);
       return res.data;
     } catch (error) {
       console.log(error);
@@ -102,7 +102,7 @@
   export const createProduct = async (data: ProductDtoForCreate): Promise<ProductDtoForCreate> => {
     try {
       const response: AxiosResponse<ProductDtoForCreate> = await api.post<ProductDtoForCreate>(
-        'https://localhost:7104/api/v1/Product',
+        'https://be-gu7h.onrender.com/api/v1/Product',
         data
       );
       return response.data;
@@ -113,7 +113,7 @@
   };
   export const updateProduct = async (id: string, productData: ProductDtoForUpdate): Promise<void> => {
     try {
-      await axios.put(`https://localhost:7104/api/v1/Product/${id}`, productData);
+      await axios.put(`https://be-gu7h.onrender.com/api/v1/Product/${id}`, productData);
     } catch (error) {
       console.error('Failed to update product:', error);
       throw error;

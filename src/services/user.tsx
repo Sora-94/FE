@@ -60,7 +60,7 @@ export const getAllUsers = async (
     throw new Error('Error fetching users');
   }
 };
-const API_BASE_URL = 'https://localhost:7104/api/v1';
+const API_BASE_URL = 'https://be-gu7h.onrender.com/api/v1';
 const TOKEN = 'YOUR_ACCESS_TOKEN_HERE'; // Thay đổi thành token thực tế của bạn
 
 // Tạo instance của axios với cấu hình cơ bản

@@ -68,7 +68,7 @@ const ComboTable: React.FC = () => {
     setSearchTerm(event.target.value);
   };
   const formatCurrency = (price: number) => {
-    return (price * 1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    return (price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   };
   const handleAddNew = () => {
     navigate("/combo/add-combo");

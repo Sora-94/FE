@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CategoryDto } from '../models/category';
 
-const API_BASE_URL = 'https://localhost:7104';
+const API_BASE_URL = 'https://be-gu7h.onrender.com';
 
 interface CategoryResponse {
   items: CategoryDto[];

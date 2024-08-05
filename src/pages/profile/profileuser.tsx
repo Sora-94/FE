@@ -78,7 +78,7 @@ const ProfilePage: React.FC = () => {
     navigate("/"); // Điều hướng về trang chủ
   };
   const formatCurrency = (price: number) => {
-    return (price * 1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    return (price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   };
   return (
     <section className="pt-5 pb-9 profile-page">

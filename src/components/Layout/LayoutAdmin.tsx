@@ -26,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       return;
     }
 
-    axios.get('https://localhost:7104/api/v1/User/profile', {
+    axios.get('https://be-gu7h.onrender.com/api/v1/User/profile', {
       headers: {
         'Authorization': `Bearer ${token}`
       }

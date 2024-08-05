@@ -6,7 +6,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { name, description, price } = product;
   const formatCurrency = (price: number) => {
-    return (price * 1000).toLocaleString("vi-VN", {
+    return (price).toLocaleString("vi-VN", {
       style: "currency",
       currency: "VND",
     });

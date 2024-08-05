@@ -21,7 +21,7 @@ interface CartItem {
 }
 
 const formatCurrency = (price: number) => {
-  return (price * 1000).toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+  return (price).toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 };
 // Component chính cho trang giỏ hàng
 const CartPage: React.FC = () => {
@@ -118,7 +118,7 @@ const CartPage: React.FC = () => {
     };
 
     try {
-      const response = await fetch("https://localhost:7104/api/v1/Order", {
+      const response = await fetch("https://be-gu7h.onrender.com/api/v1/Order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

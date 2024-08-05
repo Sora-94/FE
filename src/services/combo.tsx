@@ -1,7 +1,7 @@
 import { comboDto, ComboForUpdate } from '../models/combo';
 import axios from 'axios';
 
-const API_URL = 'https://localhost:7104/api/v1/Combo';
+const API_URL = 'https://be-gu7h.onrender.com/api/v1/Combo';
 
 export const getCombos = async (): Promise<comboDto[]> => {
   try {

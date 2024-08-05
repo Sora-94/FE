@@ -25,7 +25,7 @@ interface CartItem {
   total: number;
 }
 const formatCurrency = (price: number) => {
-  return (price * 1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+  return (price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 };
 
 // Component cho từng hàng trong bảng giỏ hàng

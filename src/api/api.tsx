@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://localhost:7104",
+  baseURL: "https://be-gu7h.onrender.com",
   timeout: 5000,
   headers: {
     Authorization: localStorage.getItem("token"),

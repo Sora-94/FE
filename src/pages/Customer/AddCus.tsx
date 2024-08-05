@@ -92,7 +92,7 @@ const EditCustomer: React.FC = () => {
     if (token) {
       try {
         const response = await axios.post(
-          'https://localhost:7104/api/v1/User/profile',
+          'https://be-gu7h.onrender.com/api/v1/User/profile',
           {
             firstName,
             lastName,

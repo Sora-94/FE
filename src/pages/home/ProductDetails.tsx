@@ -48,7 +48,7 @@ const ShopDetail: React.FC = () => {
     alert('Product added to cart!');
   };
   const formatCurrency = (price: number) => {
-    return (price * 1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    return (price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   };
   const handleQuantityChange = (type: 'increment' | 'decrement') => {
     setQuantity(prevQuantity => {
@@ -239,7 +239,7 @@ const ShopDetail: React.FC = () => {
               <div className="bg-light text-center rounded-2 p-5">
                 <h4 className="mb-4">Scan Qr Code</h4>
                 <QRCode
-                  value={`https://localhost:7104/api/v1/Product/${id}`}
+                  value={`https://be-gu7h.onrender.com/api/v1/Product/${id}`}
                   size={150}
                   logoImage={product.image}
                   logoWidth={30}

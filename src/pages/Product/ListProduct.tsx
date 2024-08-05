@@ -58,7 +58,7 @@ const ProductTable: React.FC = () => {
   };
 
   const formatCurrency = (price: number) => {
-    return (price * 1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    return (price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   };
 
   const filteredProducts = products.filter((product) =>

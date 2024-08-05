@@ -8,7 +8,7 @@ const NavbarLayout: React.FC = () => {
     const token = localStorage.getItem("token"); // Lấy token từ local storage
     if (token) {
       axios
-        .get("https://localhost:7104/api/v1/User/profile", {
+        .get("https://be-gu7h.onrender.com/api/v1/User/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

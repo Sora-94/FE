@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiBaseURL = "https://localhost:7104/api/v1";
+const apiBaseURL = "https://be-gu7h.onrender.com/api/v1";
 
 // Định nghĩa kiểu dữ liệu cho phản hồi của API
 export interface OrderDTO {
