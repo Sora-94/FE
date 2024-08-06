@@ -16,6 +16,7 @@ export interface ProductDto {
   isdelete: boolean;
   buttonLabel: "add to cart";
 }
+
 export interface ProductResponse {
   items: ProductDto[];
   pageIndex: number;

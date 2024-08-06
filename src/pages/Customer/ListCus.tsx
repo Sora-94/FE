@@ -58,6 +58,8 @@ const CustomerTable: React.FC = () => {
                 <th className="align-middle ps-4" scope="col" style={{ width: '150px' }}>Họ</th>
                 <th className="align-middle ps-4" scope="col" style={{ width: '350px' }}>Địa chỉ</th>
                 <th className="align-middle ps-4" scope="col" style={{ width: '250px' }}>Email</th>
+                <th className="align-middle ps-4" scope="col" style={{ width: '250px' }}>Vai trò</th>
+
                 <th className="align-middle ps-4" scope="col" style={{ width: '150px' }}>Hành động</th>
               </tr>
             </thead>
@@ -80,6 +82,9 @@ const CustomerTable: React.FC = () => {
                   </td>
                   <td className="email align-middle ps-4">
                     <a className="fw-semibold line-clamp-3 mb-0" href="#">{customer.email}</a>
+                  </td>
+                  <td className="email align-middle ps-4">
+                    <a className="fw-semibold line-clamp-3 mb-0" href="#">{customer.role}</a>
                   </td>
                   <td className="align-middle white-space-nowrap text-end pe-0 ps-4 btn-reveal-trigger">
                     <div className="btn-group" role="group">

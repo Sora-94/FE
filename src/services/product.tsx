@@ -15,6 +15,16 @@
     }
   };
 
+  export const getProductForList = async (): Promise<ProductDto[]> => {
+    try {
+      const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=16');
+      return res.data.items.filter(product => !product.isDeleted);;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+  
   export const getAllProducts = async (pageIndex: number, pageSize: number): Promise<ProductResponse> => {
     try {
       const res = await api.get<ProductResponse>(`/api/v1/Product?pageIndex=${pageIndex}&pageSize=${pageSize}`);
@@ -30,15 +40,6 @@
         hasPreviousPage: false,
         hasNextPage: false
       };
-    }
-  };
-  export const getProductForList = async (): Promise<ProductDto[]> => {
-    try {
-      const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=16');
-      return res.data.items.filter(product => !product.isDeleted);;
-    } catch (error) {
-      console.log(error);
-      return [];
     }
   };
   export const getProductForSearch = async (seachdata: string): Promise<ProductDto[]> => {
@@ -64,7 +65,7 @@
   export const getAllProductsNoDelete = async (): Promise<ProductDto[]> => {
     try {
       const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=8');
-      return res.data.items.filter(category => !category.isDeleted);;
+      return res.data.items.filter(product => !product.isDeleted);;
     } catch (error) {
       console.log(error);
       return [];
@@ -73,7 +74,7 @@
   export const getAllProductsNoDeletea = async (): Promise<ProductDto[]> => {
     try {
       const res = await api.get<ProductResponse>('/api/v1/Product?PageSize=99');
-      return res.data.items.filter(category => !category.isDeleted);;
+      return res.data.items.filter(product => !product.isDeleted);;
     } catch (error) {
       console.log(error);
       return [];
@@ -119,17 +120,7 @@
       throw error;
     }
   };
-  
-  export const deleteProduct = async (url: string, id: string | undefined): Promise<ProductDto | undefined> => {
-    try {
-      const response: AxiosResponse = await api.delete<ProductDto>(`${url}/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error deleting product with id ${id}:`, error);
-      throw error; // Re-throw error for further handling
-    }
-  };
   export const getProductById = async (id: string) => {
-    const response = await axios.get(`${API_BASE_URL}/Product/${id}`);
+    const response = await axios.get(`${API_BASE_URL}/api/v1/Product/${id}`);
     return response.data;
   };

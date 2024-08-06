@@ -303,21 +303,23 @@ function IndexShop() {
                   </div>
                   <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-center mt-5">
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                        (pageNum) => (
-                          <li
-                            className={`page-item ${
-                              pageIndex === pageNum ? "active" : ""
-                            }`}
-                            key={pageNum}
-                            onClick={() => handlePageChange(pageNum)}
-                          >
-                            <a className="page-link" href="#">
-                              {pageNum}
-                            </a>
-                          </li>
-                        )
-                      )}
+                    <div className="d-flex justify-content-center my-3">
+          <button
+            className="btn btn-secondary me-2"
+            onClick={() => handlePageChange(pageIndex - 1)}
+            disabled={pageIndex === 1}
+          >
+            Trước
+          </button>
+          <span>Trang {pageIndex} / {totalPages}</span>
+          <button
+            className="btn btn-secondary ms-2"
+            onClick={() => handlePageChange(pageIndex + 1)}
+            disabled={pageIndex === totalPages}
+          >
+            Sau
+          </button>
+        </div>
                     </ul>
                   </nav>
                 </div>

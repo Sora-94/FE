@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { registerUser } from "../../services/auth";
+import { registerUser } from "../../services/auth.js";
 import { Registerdto } from "../../models/auth.js";
 import "../../assets/Phoenix/css/simplebar.min.css";
 import "../../assets/Phoenix/css/theme-rtl.min.css";

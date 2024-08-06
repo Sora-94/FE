@@ -110,6 +110,13 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                                 </div>
                               </a>
                             </li>
+                            <li className="nav-item">
+                              <a className="nav-link" href="/order">
+                                <div className="d-flex align-items-center">
+                                  <span className="nav-link-text">Quản lý đơn hàng</span>
+                                </div>
+                              </a>
+                            </li>
                           </ul>
                         </div>
                       </li>
@@ -152,7 +159,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
     <a className="navbar-brand me-1 me-sm-3" href="/profile">
       <div className="d-flex align-items-center">
         <div className="d-flex align-items-center">
-          <img src="assets/img/icons/logo.png" alt="phoenix" width="27" />
+          <img src="https://prium.github.io/phoenix/v1.18.0/assets/img/icons/logo.png" alt="phoenix" width="27" />
           <h5 className="logo-text ms-2 d-none d-sm-block">phoenix</h5>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Category from "./pages/Category/ListCategory"
+import Order from "./pages/Order/Order"
 import IndexPage from "./pages/home/index";
 import ShopPage from "./pages/home/Shop";
 import DonatePage from "./pages/home/donate";
@@ -33,13 +34,6 @@ function Router() {
         <Route path="/donate"element={<DonatePage/>}/>
         <Route path="/checkout"element={<CheckoutPage/>}/>
         <Route path="/contact"element={<ContactPage/>}/>
-
-
-
-
-
-
-
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/Uprofile" element={<ProfileUserPage />} />
         <Route path="/product/details/:id" element={<ProductDetails />} />
@@ -57,6 +51,7 @@ function Router() {
         <Route path="/Combo/add-Combo" element={<ComboForm />} />
         <Route path="/combo/editcombo/:id" element={<EditCombo />} />
         <Route path="/category"element={<Category/>}/> 
+        <Route path="/order"element={<Order/>}/> 
       </Routes>
       </>
     );
