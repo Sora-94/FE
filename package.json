@@ -3,15 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "prefix:profile": "postcss --config postcss/postcss.config.profile.js src/assets/Phoenix/css/theme-rtl.min.css -o src/assets/Phoenix/css/theme-rtl.prefixed.min.css"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+  "preview": "vite preview",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
+  "prefix:profile": "postcss --config postcss/postcss.config.profile.js src/assets/Phoenix/css/theme-rtl.min.css -o src/assets/Phoenix/css/theme-rtl.prefixed.min.css"
+},
+
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
