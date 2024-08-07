@@ -70,15 +70,12 @@ function IndexShop() {
     <>
       <NavbarLayout />
       <div className="container-fluid page-header py-5">
-        <h1 className="text-center text-white display-6">Shop</h1>
+        <h1 className="text-center text-white display-6">Danh mục</h1>
         <ol className="breadcrumb justify-content-center mb-0">
           <li className="breadcrumb-item">
-            <a href="#">Home</a>
+            <a href="#">Trang chủ</a>
           </li>
-          <li className="breadcrumb-item">
-            <a href="#">Pages</a>
-          </li>
-          <li className="breadcrumb-item active text-white">Shop</li>
+          <li className="breadcrumb-item active text-white">Danh mục</li>
         </ol>
       </div>
       <div className="container-fluid fruite py-5">
@@ -92,7 +89,7 @@ function IndexShop() {
                     <input
                       type="search"
                       className="form-control p-3"
-                      placeholder="keywords"
+                      placeholder="nhập từ tìm kiếm"
                       aria-describedby="search-icon-1"
                       value={searchTerm}
                       onChange={handleSearchChange}
@@ -109,7 +106,7 @@ function IndexShop() {
                   <div className="row g-4">
                     <div className="col-lg-12">
                       <div className="mb-3">
-                        <h4>Categories</h4>
+                        <h4>Thể loại</h4>
                         <ul className="list-unstyled fruite-categorie">
                           {categories.map((category) => (
                             <li key={category.id}>
@@ -127,7 +124,7 @@ function IndexShop() {
                     </div>
                     <div className="col-lg-12">
                       <div className="mb-3">
-                        <h4 className="mb-2">Price</h4>
+                        <h4 className="mb-2">Giá</h4>
                         <input
                           type="range"
                           className="form-range w-100"
@@ -149,62 +146,9 @@ function IndexShop() {
                       </div>
                     </div>
                     <div className="col-lg-12">
-                      <div className="mb-3">
-                        <h4>Additional</h4>
-                        <div className="mb-2">
-                          <input
-                            type="radio"
-                            className="me-2"
-                            id="Categories-1"
-                            name="Categories-1"
-                            value="Beverages"
-                          />
-                          <label htmlFor="Categories-1"> Organic</label>
-                        </div>
-                        <div className="mb-2">
-                          <input
-                            type="radio"
-                            className="me-2"
-                            id="Categories-2"
-                            name="Categories-1"
-                            value="Beverages"
-                          />
-                          <label htmlFor="Categories-2"> Fresh</label>
-                        </div>
-                        <div className="mb-2">
-                          <input
-                            type="radio"
-                            className="me-2"
-                            id="Categories-3"
-                            name="Categories-1"
-                            value="Beverages"
-                          />
-                          <label htmlFor="Categories-3"> Sales</label>
-                        </div>
-                        <div className="mb-2">
-                          <input
-                            type="radio"
-                            className="me-2"
-                            id="Categories-4"
-                            name="Categories-1"
-                            value="Beverages"
-                          />
-                          <label htmlFor="Categories-4"> Discount</label>
-                        </div>
-                        <div className="mb-2">
-                          <input
-                            type="radio"
-                            className="me-2"
-                            id="Categories-5"
-                            name="Categories-1"
-                            value="Beverages"
-                          />
-                          <label htmlFor="Categories-5"> Expired</label>
-                        </div>
-                      </div>
                     </div>
                     <div className="col-lg-12">
-                      <h4 className="mb-3">Featured products</h4>
+                      <h4 className="mb-3">Sản phẩm nổi bật</h4>
                       <div className="d-flex align-items-center justify-content-start">
                         <div
                           className="rounded me-4"
@@ -254,9 +198,9 @@ function IndexShop() {
                             <i className="fa fa-star"></i>
                           </div>
                           <div className="d-flex mb-2">
-                            <h5 className="fw-bold me-2">120.000đ</h5>
+                            <h5 className="fw-bold me-2">90.000đ</h5>
                             <h5 className="text-danger text-decoration-line-through">
-                              150.000đ
+                              99.000đ
                             </h5>
                           </div>
                         </div>
@@ -303,21 +247,23 @@ function IndexShop() {
                   </div>
                   <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-center mt-5">
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                        (pageNum) => (
-                          <li
-                            className={`page-item ${
-                              pageIndex === pageNum ? "active" : ""
-                            }`}
-                            key={pageNum}
-                            onClick={() => handlePageChange(pageNum)}
-                          >
-                            <a className="page-link" href="#">
-                              {pageNum}
-                            </a>
-                          </li>
-                        )
-                      )}
+                    <div className="d-flex justify-content-center my-3">
+          <button
+            className="btn btn-secondary me-2"
+            onClick={() => handlePageChange(pageIndex - 1)}
+            disabled={pageIndex === 1}
+          >
+            Trước
+          </button>
+          <span>Trang {pageIndex} / {totalPages}</span>
+          <button
+            className="btn btn-secondary ms-2"
+            onClick={() => handlePageChange(pageIndex + 1)}
+            disabled={pageIndex === totalPages}
+          >
+            Sau
+          </button>
+        </div>
                     </ul>
                   </nav>
                 </div>

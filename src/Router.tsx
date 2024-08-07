@@ -12,6 +12,7 @@ import ProfilePage from "./pages/profile/profile";
 import ProfileUserPage from "./pages/profile/profileuser";
 import ProductForm from "./pages/Product/AddProduct";
 import ProductEditForm from "./pages/Product/EditProduct";
+import OrderListPage from "./pages/Order/Order";
 
 import ProductList from "./pages/Product/ListProduct";
 import CusForm from "./pages/Customer/AddCus";
@@ -33,13 +34,7 @@ function Router() {
         <Route path="/donate"element={<DonatePage/>}/>
         <Route path="/checkout"element={<CheckoutPage/>}/>
         <Route path="/contact"element={<ContactPage/>}/>
-
-
-
-
-
-
-
+        <Route path="/OrderListPage"element={<OrderListPage/>}/>
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/Uprofile" element={<ProfileUserPage />} />
         <Route path="/product/details/:id" element={<ProductDetails />} />

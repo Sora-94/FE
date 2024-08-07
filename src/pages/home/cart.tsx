@@ -6,11 +6,10 @@ import FooterLayout from "../../components/Home/Footer";
 // Component cho Header trang
 const PageHeader: React.FC = () => (
   <div className="container-fluid page-header py-5">
-    <h1 className="text-center text-white display-6">Cart</h1>
+    <h1 className="text-center text-white display-6">Giỏ hàng</h1>
     <ol className="breadcrumb justify-content-center mb-0">
-      <li className="breadcrumb-item"><a href="#">Home</a></li>
-      <li className="breadcrumb-item"><a href="#">Pages</a></li>
-      <li className="breadcrumb-item active text-white">Cart</li>
+      <li className="breadcrumb-item"><a href="#">Trang chủ</a></li>
+      <li className="breadcrumb-item active text-white">Giỏ hàng</li>
     </ol>
   </div>
 );
@@ -114,10 +113,7 @@ const CartPage: React.FC = () => {
   };
 
   // Tính toán subtotal và total
-  const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
-  const shipping = 30;
-  const total = subtotal + shipping;
-
+  const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);  
   return (
     <>
       <NavbarLayout />
@@ -128,12 +124,12 @@ const CartPage: React.FC = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">Products</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Handle</th>
+                  <th scope="col">Sản phẩm</th>
+                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Giá tiền</th>
+                  <th scope="col">Số luợng</th>
+                  <th scope="col">Thành tiền</th>
+                  <th scope="col">Hoạt động</th>
                 </tr>
               </thead>
               <tbody>
@@ -153,24 +149,16 @@ const CartPage: React.FC = () => {
             <div className="col-sm-8 col-md-7 col-lg-6 col-xl-4">
               <div className="bg-light rounded">
                 <div className="p-4">
-                  <h1 className="display-6 mb-4">Cart <span className="fw-normal">Total</span></h1>
+                  <h1 className="display-6 mb-4">Giỏ hàng <span className="fw-normal"></span></h1>
                   <div className="d-flex justify-content-between mb-4">
-                    <h5 className="mb-0 me-4">Subtotal:</h5>
+                    <h5 className="mb-0 me-4">Tổng tiền:</h5>
                     <p className="mb-0">{formatCurrency(subtotal)}</p>
                   </div>
-                  <div className="d-flex justify-content-between">
-                    <h5 className="mb-0 me-4">Shipping</h5>
-                    <div>
-                      <p className="mb-0">{formatCurrency(shipping)}</p>
-                    </div>
-                  </div>
+                
                 </div>
-                <div className="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                  <h5 className="mb-0 ps-4 me-4">Total</h5>
-                  <p className="mb-0 pe-4">{formatCurrency(total)}</p>
-                </div>
+               
                 <a href='checkout' className="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">
-                  Proceed Checkout
+                  Tiến tới phần thanh toán
                 </a>
               </div>
             </div>

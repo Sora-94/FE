@@ -39,7 +39,7 @@ const FruitsShopLayout = () => {
                             <ul className="nav nav-pills d-inline-flex text-center mb-5">
                                 <li className="nav-item">
                                     <a className={`d-flex m-2 py-2 bg-light rounded-pill ${!activeCategory ? 'active' : ''}`} data-bs-toggle="pill" href="#tab-1" onClick={() => setActiveCategory(null)}>
-                                        <span className="text-dark" style={{ width: "130px" }}>All Products</span>
+                                        <span className="text-dark" style={{ width: "130px" }}>Tất cả sản phẩm</span>
                                     </a>
                                 </li>
                                 {categories.map((category, index) => (

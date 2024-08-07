@@ -49,21 +49,21 @@ function Contact(){
                             <div className="d-flex p-4 rounded mb-4 bg-white">
                                 <i className="fas fa-map-marker-alt fa-2x text-primary me-4"></i>
                                 <div>
-                                    <h4>Address</h4>
+                                    <h4>Địa chỉ</h4>
                                     <p className="mb-2">Công viên phần mềm Quang Trung,phường Tân Chánh Hiệp, Quận 12, thành phố Hồ Chí Minh</p>
                                 </div>
                             </div>
                             <div className="d-flex p-4 rounded mb-4 bg-white">
                                 <i className="fas fa-envelope fa-2x text-primary me-4"></i>
                                 <div>
-                                    <h4>Mail Us</h4>
+                                    <h4>Hộp thư điện tử</h4>
                                     <p className="mb-2">fb98@gmail.com</p>
                                 </div>
                             </div>
                             <div className="d-flex p-4 rounded bg-white">
                                 <i className="fa fa-phone-alt fa-2x text-primary me-4"></i>
                                 <div>
-                                    <h4>Telephone</h4>
+                                    <h4>Điện thoại</h4>
                                     <p className="mb-2">+84 865033560</p>
                                 </div>
                             </div>

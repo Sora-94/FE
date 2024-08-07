@@ -7,16 +7,18 @@ import { useNavigate } from 'react-router-dom';
 interface NavbarProps {
   children: ReactNode;
 }
-
+import { getUserProfile } from "../../services/user.js";
+import { UserDTO } from "../../models/user.js";
 const Navbar: React.FC<NavbarProps> = ({ children }) => {
   const [isEcommerceOpen, setIsEcommerceOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(true);
-
-
+  const [user, setUser] = useState<UserDTO | null>(null);
   const toggleEcommerce = () => setIsEcommerceOpen(!isEcommerceOpen);
   const toggleAdmin = () => setIsAdminOpen(!isAdminOpen);
   const [role, setRole] = useState(null);
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token'); // Lấy token từ local storage
@@ -25,6 +27,17 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       navigate('/signin'); // Điều hướng đến trang đăng nhập
       return;
     }
+ // Lấy thông tin người dùng và đơn hàng
+ const fetchData = async () => {
+  try {
+    const userData = await getUserProfile(token);
+    setUser(userData);
+  } catch (err) {
+    setError("Failed to fetch data");
+  } finally {
+    setLoading(false); // Đã hoàn tất việc gọi API
+  }
+};
 
     axios.get('https://be-gu7h.onrender.com/api/v1/User/profile', {
       headers: {
@@ -104,6 +117,13 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                               </a>
                             </li>
                             <li className="nav-item">
+                              <a className="nav-link" href="/OrderListPage">
+                                <div className="d-flex align-items-center">
+                                  <span className="nav-link-text">Quản lý đơn hàng</span>
+                                </div>
+                              </a>
+                            </li>
+                            <li className="nav-item">
                               <a className="nav-link" href="/Customer">
                                 <div className="d-flex align-items-center">
                                   <span className="nav-link-text">Quản lý người dùng</span>
@@ -152,7 +172,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
     <a className="navbar-brand me-1 me-sm-3" href="/profile">
       <div className="d-flex align-items-center">
         <div className="d-flex align-items-center">
-          <img src="assets/img/icons/logo.png" alt="phoenix" width="27" />
+          <img src="https://prium.github.io/phoenix/v1.18.0/assets/img/icons/logo.png" alt="phoenix" width="27" />
           <h5 className="logo-text ms-2 d-none d-sm-block">phoenix</h5>
         </div>
       </div>
@@ -172,7 +192,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
         aria-expanded="false"
       >
         <div className="avatar avatar-l">
-          <img className="rounded-circle" src="assets/img/team/40x40/57.webp" alt="" />
+          <img className="rounded-circle" src={user?.imagePath || "https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg"} alt="" />
         </div>
       </a>
     </li>

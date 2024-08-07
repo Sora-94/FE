@@ -69,11 +69,10 @@ const ShopDetail: React.FC = () => {
     <>
       <NavbarLayout />
       <div className="container-fluid page-header py-5">
-        <h1 className="text-center text-white display-6">Shop Detail</h1>
+        <h1 className="text-center text-white display-6">Chi tiết sản phẩm</h1>
         <ol className="breadcrumb justify-content-center mb-0">
-          <li className="breadcrumb-item"><a href="#">Home</a></li>
-          <li className="breadcrumb-item"><a href="#">Pages</a></li>
-          <li className="breadcrumb-item active text-white">Shop Detail</li>
+          <li className="breadcrumb-item"><a href="#">Trang chủ</a></li>
+          <li className="breadcrumb-item active text-white">Chi tiết sản phẩm</li>
         </ol>
       </div>
       <div className="container-fluid py-5 mt-5">
@@ -146,7 +145,7 @@ const ShopDetail: React.FC = () => {
                         aria-controls="nav-about"
                         aria-selected="true"
                       >
-                        Description
+                        Chi tiết sản phẩm
                       </button>
                       <button
                         className="nav-link border-white border-bottom-0"
@@ -158,7 +157,7 @@ const ShopDetail: React.FC = () => {
                         aria-controls="nav-mission"
                         aria-selected="false"
                       >
-                        Reviews
+                        Đánh giá
                       </button>
                     </div>
                   </nav>
@@ -169,11 +168,8 @@ const ShopDetail: React.FC = () => {
                         <div className="row g-4">
                           <div className="col-6">
                             {[
-                              { label: 'Weight', value: product.weight },
-                              { label: 'Country of Origin', value: product.origin },
-                              { label: 'Quality', value: product.quality },
-                              { label: 'Check', value: product.check },
-                              { label: 'Min Weight', value: product.minWeight }
+                              { label: 'Cân nặng', value: "1kg" },
+                              { label: 'Xuất sứ', value: "Việt Nam" },
                             ].map((item, index) => (
                               <div
                                 key={index}
@@ -213,34 +209,34 @@ const ShopDetail: React.FC = () => {
                   </div>
                 </div>
                 <form action="#">
-                  <h4 className="mb-5 fw-bold">Leave a Reply</h4>
+                  <h4 className="mb-5 fw-bold">Đánh giá</h4>
                   <div className="row g-3 mb-4">
                     <div className="col-sm-6 col-lg-4">
-                      <input type="text" className="form-control bg-light border-0" placeholder="Your Name" />
+                      <input type="text" className="form-control bg-light border-0" placeholder="Tên của bạn" />
                     </div>
                     <div className="col-sm-6 col-lg-4">
-                      <input type="email" className="form-control bg-light border-0" placeholder="Your Email" />
+                      <input type="email" className="form-control bg-light border-0" placeholder="Email của bạn" />
                     </div>
                     <div className="col-12">
-                      <textarea className="form-control bg-light border-0" rows={5} placeholder="Message"></textarea>
+                      <textarea className="form-control bg-light border-0" rows={5} placeholder="Phản hồi"></textarea>
                     </div>
                   </div>
                   <div className="form-check">
                     <input type="checkbox" className="form-check-input" id="gridCheck" />
                     <label className="form-check-label" htmlFor="gridCheck">
-                      Save my name, email, and website in this browser for the next time I comment.
+                    Lưu tên, email và trang web của tôi trong trình duyệt này cho lần tiếp theo tôi nhận xét.
                     </label>
                   </div>
-                  <button className="btn btn-secondary rounded-pill py-3 px-5 mt-3" type="submit">Submit Now</button>
+                  <button className="btn btn-secondary rounded-pill py-3 px-5 mt-3" type="submit">Gửi ngay</button>
                 </form>
               </div>
             </div>
             <div className="col-lg-4 col-xl-3">
               <div className="bg-light text-center rounded-2 p-5">
-                <h4 className="mb-4">Scan Qr Code</h4>
+                <h4 className="mb-4">Mã QR của sản phẩm</h4>
                 <QRCode
-                  value={`https://be-gu7h.onrender.com/api/v1/Product/${id}`}
-                  size={150}
+                  value={`https://fruits-shop-fb98.netlify.app/product/details/${id}`}
+                  size={200}
                   logoImage={product.image}
                   logoWidth={30}
                   logoHeight={30}
