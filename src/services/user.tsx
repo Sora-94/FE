@@ -52,12 +52,21 @@ export const getAllUsers = async (
         PageSize: pageSize,
         SearchTerm: searchTerm,
         SortColumn: sortColumn,
-        SortOrder: sortOrder
-      }
+        SortOrder: sortOrder,
+      },
     });
     return response.data;
   } catch (error) {
-    throw new Error('Error fetching users');
+    console.error('Error fetching users', error);
+    return {
+      items: [],
+      pageIndex: 0,
+      totalPages: 0,
+      totalCount: 0,
+      pageSize: 0,
+      hasPreviousPage: false,
+      hasNextPage: false,
+    };
   }
 };
 const API_BASE_URL = 'https://be-gu7h.onrender.com/api/v1';
