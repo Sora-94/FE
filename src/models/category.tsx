@@ -1,5 +1,6 @@
-export interface CategoryDto{
+export interface CategoryDto {
     id: string;
     name: string;
-    isDelete: boolean;
-}
+    productCount: number;
+    isDeleted: boolean;
+  }

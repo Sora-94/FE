@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
               <div className="col-lg-3">
                 <a href="#">
                   <h1 className="text-primary mb-0">Fruitables</h1>
-                  <p className="text-secondary mb-0">Fresh products</p>
+                  <p className="text-secondary mb-0">Sản phẩm tươi sống</p>
                 </a>
               </div>
               <div className="col-lg-6">
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
                     className="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white"
                     style={{ top: 0, right: 0 }}
                   >
-                    Subscribe Now
+                    Đăng ký ngay
                   </button>
                 </div>
               </div>
@@ -53,13 +53,12 @@ const Footer: React.FC = () => {
           <div className="row g-5">
             <div className="col-lg-3 col-md-6">
               <div className="footer-item">
-                <h4 className="text-light mb-3">Why People Like us!</h4>
+                <h4 className="text-light mb-3">Tại sao mọi người thích chúng tôi!</h4>
                 <p className="mb-4">
-                  typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus
-                  PageMaker including of Lorem Ipsum.
+                  Đảm bảo được nguồn hàng tươi sống và giao tới tận tay khách hàng
                 </p>
                 <a href="" className="btn border-secondary py-2 px-4 rounded-pill text-primary">
-                  Read More
+                  đọc thêm
                 </a>
               </div>
             </div>
@@ -67,54 +66,43 @@ const Footer: React.FC = () => {
               <div className="d-flex flex-column text-start footer-item">
                 <h4 className="text-light mb-3">Shop Info</h4>
                 <a className="btn-link" href="">
-                  About Us
+                  Về chúng tôi
                 </a>
                 <a className="btn-link" href="">
-                  Contact Us
+                  Liên hệ
                 </a>
                 <a className="btn-link" href="">
-                  Privacy Policy
-                </a>
+                Chính sách bảo mật                </a>
                 <a className="btn-link" href="">
-                  Terms & Condition
-                </a>
+                Điều khoản & Điều kiện                </a>
                 <a className="btn-link" href="">
-                  Return Policy
-                </a>
+                Chính sách đổi trả                </a>
                 <a className="btn-link" href="">
-                  FAQs & Help
-                </a>
+                Câu hỏi thường gặp & Trợ giúp                </a>
               </div>
             </div>
             <div className="col-lg-3 col-md-6">
               <div className="d-flex flex-column text-start footer-item">
-                <h4 className="text-light mb-3">Account</h4>
+                <h4 className="text-light mb-3">Tài khoản</h4>
                 <a className="btn-link" href="">
-                  My Account
-                </a>
+                Tài khoản của tôi                </a>
                 <a className="btn-link" href="">
-                  Shop details
-                </a>
+                Chi tiết cửa hàng                </a>
                 <a className="btn-link" href="">
-                  Shopping Cart
-                </a>
+Giỏ hàng                </a>
                 <a className="btn-link" href="">
-                  Wishlist
-                </a>
+Danh sách yêu thích                </a>
                 <a className="btn-link" href="">
-                  Order History
-                </a>
-                <a className="btn-link" href="">
-                  International Orders
-                </a>
+Lịch sử đạt hàng                </a>
+               
               </div>
             </div>
             <div className="col-lg-3 col-md-6">
               <div className="footer-item">
-                <h4 className="text-light mb-3">Contact</h4>
-                <p>Address: 1429 Netus Rd, NY 48247</p>
-                <p>Email: Example@gmail.com</p>
-                <p>Phone: +0123 4567 8910</p>
+                <h4 className="text-light mb-3">Liên hệ</h4>
+                <p>Địa chỉ:  Công viên phần mềm Quang Trung,phường Tân Chánh Hiệp, Quận 12, thành phố Hồ Chí Minh</p>
+                <p>Email: fb98@gmail.com</p>
+                <p>Phone: +84 865033560</p>
                 <p>Payment Accepted</p>
                 <img src={payment} className="img-fluid" alt="Payment Methods" />
               </div>

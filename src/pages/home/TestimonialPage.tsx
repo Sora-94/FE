@@ -11,24 +11,24 @@ import '../../assets/css/style.css'; // Custom CSS
 import testimonial from '../../assets/img/testimonial-1.jpg';
 const testimonials = [
   {
-    text: "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    text: "Trái cây tươi, sạch. giao hàng nhanh thân thiện",
     img: testimonial,
-    name: 'Client Name',
-    profession: 'Profession',
+    name: 'Phương Giang',
+    profession: 'Sinh viên',
     rating: 4,
   },
   {
-    text: "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    text: "Trái cây tươi, sạch. giao hàng nhanh thân thiện",
     img: testimonial,
-    name: 'Client Name',
-    profession: 'Profession',
+    name: 'Bảo Hân',
+    profession: 'Nhân viên VSATTP',
     rating: 5,
   },
   {
-    text: "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    text: "Trái cây tươi, sạch. giao hàng nhanh thân thiện",
     img: testimonial,
-    name: 'Client Name',
-    profession: 'Profession',
+    name: 'Thanh Nhàn',
+    profession: 'Nhân viên MKT',
     rating: 5,
   },
 ];
@@ -38,18 +38,17 @@ const Testimonial: React.FC = () => {
     <>
       <NavbarLayout />
       <div className="container-fluid page-header py-5">
-        <h1 className="text-center text-white display-6">Testimonial</h1>
+        <h1 className="text-center text-white display-6">Đánh giá</h1>
         <ol className="breadcrumb justify-content-center mb-0">
-          <li className="breadcrumb-item"><a href="#">Home</a></li>
-          <li className="breadcrumb-item"><a href="#">Pages</a></li>
-          <li className="breadcrumb-item active text-white">Testimonial</li>
+          <li className="breadcrumb-item"><a href="#">Trang chủ</a></li>
+          <li className="breadcrumb-item active text-white">Đánh giá</li>
         </ol>
       </div>
       <div className="container-fluid testimonial py-5">
         <div className="container py-5">
           <div className="testimonial-header text-center">
-            <h4 className="text-primary">Our Testimonial</h4>
-            <h1 className="display-5 mb-5 text-dark">Our Client Saying!</h1>
+            <h4 className="text-primary">Lời đánh giá của chúng tôi</h4>
+            <h1 className="display-5 mb-5 text-dark">Khách hàng của chúng tôi nói!</h1>
           </div>
           <OwlCarousel className="owl-carousel testimonial-carousel" loop margin={10} nav>
             {testimonials.map((testimonial, index) => (

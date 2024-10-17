@@ -60,8 +60,8 @@ const LayoutPage: React.FC<LayoutPageProps> = ({ children }) => {
             <div className="nav-item dropdown">
               <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
               <div className="dropdown-menu m-0">
-                <a href="/register" className="dropdown-item">Sign Up</a>
-                <a href="/login" className="dropdown-item">Sign In</a>
+                <a href="/signup" className="dropdown-item">Sign Up</a>
+                <a href="/signin" className="dropdown-item">Sign In</a>
                 <a href="/manager" className="dropdown-item">Manager</a>
                 <a href="/profile" className="dropdown-item">Profile</a>
                 <a href="/cart" className="dropdown-item">Cart</a>

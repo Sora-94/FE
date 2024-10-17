@@ -1,11 +1,29 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import viteCommonjs from 'vite-plugin-commonjs';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteCommonjs() // Sử dụng plugin commonjs của Vite
+  ],
   build: {
-    sourcemap: false
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Bỏ qua cảnh báo về xuất khẩu trùng lặp
+        if (warning.code === 'DUPLICATE_EXPORTS') return;
+        warn(warning);
+      },
+    },
+    outDir: 'build',
+  },
+  resolve: {
+    alias: {
+      '@': '/src', // Alias cho thư mục src
+    },
+  },
+  server: {
+    port: 3000,
   },
   css: {
     preprocessorOptions: {
@@ -17,5 +35,4 @@ export default defineConfig({
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' }
   }
-
-})
+});

@@ -10,8 +10,8 @@ const services = [
     borderClass: 'border-secondary',
     contentBgClass: 'bg-primary',
     textColorClass: 'text-white',
-    title: 'Fresh Apples',
-    discount: '20% OFF',
+    title: 'Táo tươi',
+    discount: 'Giảm giá 20%',
   },
   {
     href: '#',
@@ -20,8 +20,8 @@ const services = [
     borderClass: 'border-dark',
     contentBgClass: 'bg-light',
     textColorClass: 'text-primary',
-    title: 'Tasty Fruits',
-    discount: 'Free delivery',
+    title: 'Trái cây ngon',
+    discount: 'Giao hàng miên phí',
   },
   {
     href: '#',
@@ -30,8 +30,8 @@ const services = [
     borderClass: 'border-primary',
     contentBgClass: 'bg-secondary',
     textColorClass: 'text-white',
-    title: 'Exotic Vegitable',
-    discount: 'Discount 30$',
+    title: 'Rau củ tươi',
+    discount: 'Giảm 30.000đ',
   },
 ];
 
@@ -44,7 +44,7 @@ const Features2: React.FC = () => {
             <div className="col-md-6 col-lg-4" key={index}>
               <a href={service.href}>
                 <div className={`service-item ${service.bgClass} rounded ${service.borderClass}`}>
-                  <img src={service.imgSrc} className="img-fluid rounded-top w-100" alt="" />
+                  <img src={service.imgSrc} className="img-fluid rounded-top w-100" alt="" style={{height:"350px"}} />
                   <div className="px-4 rounded-bottom">
                     <div className={`service-content ${service.contentBgClass} text-center p-4 rounded`}>
                       <h5 className={service.textColorClass}>{service.title}</h5>
